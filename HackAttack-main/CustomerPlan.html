@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Plan Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+        }
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 15px 0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .nav-links a {
+            color: white;
+            margin-left: 20px;
+        }
+        .header .profile {
+            position: relative;
+        }
+        .header .profile .profile-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .header .profile .profile-btn:hover {
+            text-decoration: underline;
+        }
+        .header .profile .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #343a40;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            padding: 10px;
+            display: none;
+        }
+        .header .profile .dropdown-menu a {
+            color: white;
+            display: block;
+            padding: 5px 0;
+        }
+        .header .profile.show .dropdown-menu {
+            display: block;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #map {
+            height: 400px;
+            margin-top: 20px;
+        }
+        .button{
+            margin-left: 43%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+            <header class="header">
+            <div class="container">
+                <div class="logo">Tour Guide</div>
+                <div class="nav-links">
+                    <a href="Ghomepage.html">Home</a>
+                  
+                </div>
+              
+            </div>
+        </header>
+       
+        <div class="container mt-5 content">
+
+            <h1>Customer Plan Details</h1>
+            <div>
+                <h2>Customer Plan #1</h2>
+                <p><strong>Customer Name:</strong> Siti</p>
+                <p><strong>Phone Number:</strong> 012-34567891</p>
+                <p><strong>Budget:</strong> $1000</p>
+                <p><strong>Date:</strong> 2024-08-15</p>
+                <p><strong>Theme:</strong> Adventure</p>
+                <p><strong>Preferred Location:</strong></p>
+            </div>
+            <div id="map"></div>
+        </div>
+        <div class="button">
+            <button  class="btn btn-secondary btn-back" onclick="goBack()">Back to previous page</button>
+        </div>
+        <footer class="footer">
+            <div>
+                <p>&copy; 2024 Tour Guide. All rights reserved.</p>
+            </div>
+        </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function toggleProfileDropdown() {
+            var dropdown = document.getElementById("profileDropdown");
+            dropdown.classList.toggle("show");
+        }
+
+        // Close dropdown when clicking outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Initialize and add the map
+        function initMap() {
+            // Coordinates for Penang, Malaysia
+            var penang = { lat: 5.4164, lng: 100.3327 };
+
+            // Example attractions (replace with actual attractions from user's selection)
+            var attractions = [
+                { position: { lat: 5.4183, lng: 100.3401 }, title: 'Penang Hill' },
+                { position: { lat: 5.4244, lng: 100.3296 }, title: 'Kek Lok Si Temple' },
+                { position: { lat: 5.4150, lng: 100.3432 }, title: 'Penang National Park' }
+            ];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: penang
+            });
+
+            // Place markers for attractions
+            attractions.forEach(function(attraction) {
+                new google.maps.Marker({
+                    position: attraction.position,
+                    map: map,
+                    title: attraction.title
+                });
+            });
+        }
+    </script>
+
+    <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaLKbWZGzCorU-6RO8icDVKPK50dXvRgk&callback=initMap">
+    </script>
+</body>
+</html>

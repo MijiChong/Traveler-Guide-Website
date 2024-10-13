@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaysian States</title>
+    <link rel="stylesheet" href="filter.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+</head>
+<body>
+    
+        <main>
+            <p>Welcome</p>
+        </main>
+
+        <div class="container">
+            <h2>States to travel</h2>
+            <div class="states-list">
+                <div class="state-item">
+                    <input type="radio" id="johor" name="state">
+                    <label for="johor">Johor</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kedah" name="state">
+                    <label for="kedah">Kedah</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kelantan" name="state">
+                    <label for="kelantan">Kelantan</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kuala-lumpur" name="state">
+                    <label for="kuala-lumpur">Kuala Lumpur</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="melaka" name="state">
+                    <label for="melaka">Melaka</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="negeri-sembilan" name="state">
+                    <label for="negeri-sembilan">Negeri Sembilan</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="pahang" name="state">
+                    <label for="pahang">Pahang</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="penang" name="state">
+                    <label for="penang">Penang</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="perak" name="state">
+                    <label for="perak">Perak</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="perlis" name="state">
+                    <label for="perlis">Perlis</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="selangor" name="state">
+                    <label for="selangor">Selangor</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="sabah" name="state">
+                    <label for="sabah">Sabah</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="sarawak" name="state">
+                    <label for="sarawak">Sarawak</label>
+                </div>
+            </div>
+    
+    
+    
+            <br><h2>Budget to travel</h2>
+            <div class="price-range" id="activities">
+            <h4>Activities</h4>
+            <div class="slider">
+                <span id="activities-slider-value">MYR 100</span>
+            </div>
+            <div class="field">
+                <div class="value left">MYR 40</div>
+                <input type="range" min="40" max="550" value="100" step="1" id="activities-slider">
+                <div class="value right">MYR 550</div>
+            </div>
+            </div>
+
+            <div class="price-range" id="food">
+            <h4>Food</h4>
+            <div class="slider">
+                <span id="food-slider-value">MYR 100</span>
+            </div>
+            <div class="field">
+                <div class="value left">MYR 40</div>
+                <input type="range" min="40" max="500" value="100" step="1" id="food-slider">
+                <div class="value right">MYR 500</div>
+            </div>
+            </div>
+
+            <div class="price-range" id="accommodation">
+            <h4>Accommodation</h4>
+            <div class="slider">
+                <span id="accommodation-slider-value">MYR 100</span>
+            </div>
+            <div class="field">
+                <div class="value left">MYR 40</div>
+                <input type="range" min="40" max="1000" value="100" step="1" id="accommodation-slider">
+                <div class="value right">MYR 1000</div>
+            </div>
+            </div>
+
+            <br><h2>Preferences</h2>
+
+            <div class="filter-group">
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="activities" value="adventure"> Adventure</label>
+                <label><input type="checkbox" name="activities" value="city-walk"> City Walk</label>
+                <label><input type="checkbox" name="activities" value="local-culture"> Local Culture</label>
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="food" value="street-food"> Street Food</label>
+                <label><input type="checkbox" name="food" value="fine-dining"> Fine Dining</label>
+                <label><input type="checkbox" name="food" value="local-cuisine"> Local Cuisine</label>
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="accommodation" value="hotel"> Hotel</label>
+                <label><input type="checkbox" name="accommodation" value="hostel"> Hostel</label>
+                <label><input type="checkbox" name="accommodation" value="bnb"> Airbnb</label>
+            </div>
+            </div>
+        </div>    
+    
+    <script src="filter.js"></script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malacca - Travel Destinations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #b45c46, #d7816a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .about h2 {
+            color: #b45c46;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .image-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            width: 80%;
+            padding: 20px;
+            background: rgba(180, 92, 70, 0.8);
+            border-radius: 10px;
+        }
+
+        .attractions h2 {
+            color: #b45c46;
+            text-align: center;
+            font-size: 2em;
+            margin: 40px 0;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, height 0.3s ease;
+            overflow: hidden;
+            height: 60px; /* Adjust the height as needed */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            height: auto; /* Allow the card to expand in height */
+        }
+
+        .card h3 {
+            color: #b45c46;
+            margin-top: 0;
+        }
+
+        .card p {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .card:hover p {
+            opacity: 1;
+        }
+
+        .getting-there {
+            margin-top: 40px;
+        }
+
+        .getting-there h2 {
+            color: #b45c46;
+            font-size: 2em;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #b45c46;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #d7816a;
+        }
+
+        @media (max-width: 768px) {
+            .text-overlay {
+                width: 90%;
+                font-size: 0.9em;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .image-attribution {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+
+        .image-attribution a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .image-attribution a:hover {
+            color: #f0f0f0;
+        }
+
+        .card-attribution {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .card-attribution a {
+            color: #b45c46;
+            text-decoration: none;
+        }
+
+        .card-attribution a:hover {
+            text-decoration: underline;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            max-height: 150px; /* Adjust the height as needed */
+            object-fit: cover;
+        }
+        .hero {
+            background-image: url('https://www.cktravels.com/wp-content/uploads/2019/07/malaysia-2-week-itinerary-18-big.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card h3 {
+            font-size: 1.5em; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Explore Malacca</h1>
+            <p>Discover the heart of Malaysia's history and vibrant culture. Enjoy in the city that is full of charm and culture</p>
+        </div>
+    </div>
+
+    <main>
+        <section class="about">
+            <h2>About Malacca</h2>
+            <div class="image-container">
+                    <p>Malacca is the unofficial historical capital of Malaysia, serving as a link between east and west for over 500 years. It was here that colonial forces first made contact with Malaysia, which eventually shaped the country into its current economic and political system.</p>
+                    <p>Today, Malacca is a beautiful city that's rich with heritage buildings, ancient landmarks and colonial structures. You can still see the imprints of British, Dutch and Portuguese forces left behind in forts, museums, churches and towers.</p>
+                    <p>Many people are impressed with Malacca's laidback atmosphere and lost-in-time feel. Life goes by at a leisurely pace with independent restaurants, cafes occupying Chinese shopfronts, and traditional Malay villages.</p>
+                    <p>Jalan Hang Jebat, or Jonker Walk, is a complete delight to walk through, as centuries-old shop-houses still stand proudly, selling anything from attractive antiques to one-of-a-kind local produce.</p>
+            </div>
+        </section>
+        
+        <section class="attractions">
+            <h2>Attractions</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>A Famosa</h3>
+                    <p>A Portuguese fortress built in Malacca, Malaysia.</p>
+                    <div class="card-attribution"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/A_Famosa_Fortress.JPG/1200px-A_Famosa_Fortress.JPG" alt="A Famosa"></div>
+                </div>
+                <div class="card">
+                    <h3>Christ Church</h3>
+                    <p>An 18th-century Dutch-built Anglican church in Malacca City.</p>
+                    <div class="card-attribution"><img src="https://live.staticflickr.com/5249/5219338600_58b75582c5_z.jpg" alt="Christ Church"></div>
+                </div>
+                <div class="card">
+                    <h3>Jonker Street Night Market</h3>
+                    <p>A street filled with historical houses, shops selling antiques, textiles, foods, and souvenirs.</p>
+                    <div class="card-attribution"><img src="https://cktravels.com/wp-content/uploads/2020/02/DSC01889.jpg" alt="Jonker Street Night Market"></div>
+                </div>
+                <div class="card">
+                    <h3>St. Paul's Church</h3>    
+                    <p>A historic church building originally built from 1566 to 1590.</p>
+                    <div class="card-attribution"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/St._Paul%27s_Church_Malacca_2012.JPG" alt="St. Paul's Church"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="getting-there">
+            <h2>Getting There</h2>
+            <p>Malacca is easily accessible by various modes of transportation. The nearest airport is Malacca International Airport, which offers domestic flights. For international travelers, the closest major airport is Kuala Lumpur International Airport, about 2 hours drive away. Malacca is also well-connected by bus and car to other major cities in Malaysia.</p>
+        </section>
+        
+        <div class="back-link">
+            <a href="main.html" class="btn">Back to Home Page</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Translation and Pronunciation</title>
+    <link rel="stylesheet" href="language.css">
+</head>
+<body>
+
+    <div class="banner-container">
+        <button class="back-to-menu-btn" onclick="goBack()">Back to Menu</button>
+        <div class="banner"></div>
+        <div class="banner-content">
+            <h1>Overcome Language Barriers</h1>
+            <p class="banner-description">"Engage and connect with locals."</p>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+    
+    <div class="banner"></div>
+
+    <div class="translation-container">
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message here">
+            <select id="language-select" name="language-select" required>
+                <option value="en">English</option>
+                <option value="zh">Mandarin</option>
+                <option value="ta">Tamil</option>
+                <option value="ms">Malay</option>
+            </select>
+            <button id="translate-btn" type="button">Translate</button>
+        </form>
+
+        <input type="text" id="translated-text" readonly placeholder="Translated text will appear here">
+    
+        <button id="pronounce-btn">Pronounce</button>
+
+        <div id="chat-area"></div>
+    </div>
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        // Event Listeners
+        document.getElementById('language-select').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            displayMessage(`Selected language: ${getLanguageName(selectedLanguage)}`);
+        });
+
+        document.getElementById('translate-btn').addEventListener('click', translateText);
+        document.getElementById('pronounce-btn').addEventListener('click', pronounceText);
+        document.getElementById('back-to-menu-btn').addEventListener('click', function() {
+            alert('Back to Menu clicked. Add your menu navigation logic here.');
+            // If you have a specific URL for the menu, you can uncomment the next line
+            // window.location.href = 'menu.html';
+        });
+
+        // Functions
+        function translateText() {
+            const userInput = document.getElementById('user-input').value;
+            const selectedLanguage = document.getElementById('language-select').value;
+            
+            if (userInput.trim() === '') {
+                displayMessage('Please enter some text to translate.');
+                return;
+            }
+            
+            displayMessage(`Translating to ${getLanguageName(selectedLanguage)}: ${userInput}`);
+            
+            // Simulating translation delay
+            setTimeout(() => {
+                let translatedText;
+
+                // Simulated translations
+                switch (selectedLanguage) {
+                    case 'en':
+                        translatedText = `[${userInput}]`;
+                        break;
+                    case 'zh':
+                        translatedText = `[Zhè dōngxī duōshǎo qián (这东西多少钱)]`;
+                        break;
+                    case 'ta':
+                        translatedText = `[Inta poruḷukku evvaḷavu celavākum]`;
+                        break;
+                    case 'ms':
+                        translatedText = `[Berapa harga benda ini]`;
+                        break;
+                    default:
+                        translatedText = `[Unknown language]`;
+                }
+                
+                document.getElementById('translated-text').value = translatedText;
+                displayMessage(`Translated text: ${translatedText}`);
+            }, 1000);
+        }
+
+        function pronounceText() {
+            const textToPronounce = document.getElementById('translated-text').value;
+            
+            if (textToPronounce.trim() === '') {
+                displayMessage('Please translate some text before pronouncing.');
+                return;
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(textToPronounce);
+            utterance.rate = 0.5;
+            utterance.volume = 1.0;
+            
+            window.speechSynthesis.speak(utterance);
+            displayMessage(`Pronouncing: ${textToPronounce}`);
+        }
+
+        function displayMessage(message) {
+            const chatArea = document.getElementById("chat-area");
+            const messageElement = document.createElement("div");
+            messageElement.textContent = message;
+            chatArea.appendChild(messageElement);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function getLanguageName(code) {
+            const languages = {
+                'en': 'English',
+                'zh': 'Mandarin',
+                'ta': 'Tamil',
+                'ms': 'Malay'
+            };
+            return languages[code] || code;
+        }
+    </script>
+</body>
+</html>

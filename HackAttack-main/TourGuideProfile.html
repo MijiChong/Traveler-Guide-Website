@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Guide Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            background-image: url("https://us.images.westend61.de/0001878983pw/singapore-singapore-city-clarke-quay-with-moored-boats-in-foreground-THAF03204.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+        }
+        .header {
+            background-color: rgba(52, 58, 64,0.8);
+            color: white;
+            padding: 15px 0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .nav-links a {
+            color: white;
+            margin-left: 20px;
+        }
+        .header .profile {
+            position: relative;
+        }
+        .header .profile .profile-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .header .profile .profile-btn:hover {
+            text-decoration: underline;
+        }
+        .header .profile .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #343a40;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            padding: 10px;
+            display: none;
+        }
+        .header .profile .dropdown-menu a {
+            color: white;
+            display: block;
+            padding: 5px 0;
+        }
+        .header .profile.show .dropdown-menu {
+            display: block;
+        }
+        .footer {
+            background-color: rgba(52, 58, 64,0.8);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-weight: 500;
+        }
+        .form-group .form-control {
+            border-radius: 5px;
+        }
+        .form-group .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+     .pcontainer{
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background-color: rgba(255, 255, 255, 0.9); /* Add this line */
+        border-radius: 10px;
+     }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo"><h2>Tour Guide</h2></div>
+            <div class="nav-links">
+                <a href="Ghomepage.html">Back</a>
+    
+               
+            </div>
+            
+        </div>
+    </header>
+    <div class="pcontainer">
+        <h1>Profile</h1>
+        <div class="profile-header mb-4">
+            <img width="20%" height="13%" src="John_Cena.jpg" alt="Profile Picture" id="profilePicture" class="rounded-circle">
+            <div>
+                <h2>John Doe</h2>
+                <p>Tour Guide</p>
+            </div>
+        </div>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="profilePictureInput">Profile Picture</label>
+                <input type="file" class="form-control" id="profilePictureInput" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea class="form-control" id="bio" rows="4" placeholder="Tell us something about yourself"></textarea>
+            </div>
+            <button style="margin-left: 40%;" type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <div>
+            <p>&copy; 2024 Tour Guide. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function toggleProfileDropdown() {
+            var dropdown = document.getElementById("profileDropdown");
+            dropdown.classList.toggle("show");
+        }
+
+        // Close dropdown when clicking outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        document.getElementById('profilePictureInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profilePicture').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Add your save functionality here
+            alert('Profile updated successfully!');
+            window.history.back(); // Redirect to the previous page //window.location.href = 'https://www.example.com'; // Replace with your desired URL
+        });
+    </script>
+</body>
+</html>

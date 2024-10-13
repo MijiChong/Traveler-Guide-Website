@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Knights' Travel Planner</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/language.css">
+    <link rel="stylesheet" href="css/filter.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        width: 70%;
+        /* Adjust width as needed */
+        max-width: 800px;
+        /* Example maximum width */
+        padding: 40px;
+        /* Increased padding for better spacing */
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .dish-image {
+        width: 100%;
+        /* Ensures the image spans the container */
+        max-height: 400px;
+        /* Example maximum height */
+        object-fit: cover;
+        border-radius: 10px;
+        object-position: center;
+    }
+
+    .h3 {
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <header>
+        <a href="language.html" class="jump-button">Go to Language Page</a>
+        <a href="userLogin.html" class="jump-button">Logout</a>
+        <h1>Travelling Recommendations</h1>
+    </header>
+
+
+
+    <div class="card">
+        <main class="main">
+            <a href="penang.html" class="section-link">
+                <img src="https://t3.ftcdn.net/jpg/01/32/53/66/360_F_132536672_aEH7j8h7hvmjDpTcY5iqJkDGYfqMUahu.jpg"
+                    alt="Penang" class="dish-image">
+                <div class="overlay">
+                    <h2>Penang</h2>
+                </div>
+            </a>
+        </main>
+    </div>
+
+    <div class="card">
+        <a href="melakav2.html" class="section-link">
+            <img src="https://images.squarespace-cdn.com/content/v1/5a87961cbe42d637c54cab93/1571338347141-BVVAI15K1GFZS2XP69H8/melaka-malaysia-travel-guide.jpg?format=1500w"
+                alt="Culture and Heritage" class="dish-image">
+            <div class="overlay">
+                <h2>MELAKA</h2>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="https://www.britannica.com/place/Kuala-Lumpur" class="section-link">
+            <img src="https://res.klook.com/image/upload/q_85/c_fill,w_1360/v1596013079/blog/o2zrlskgigrutrdp89ga.webp"
+                alt="Lifestyle" class="dish-image">
+            <div class="overlay">
+                <h2>KUALA LUMPUR</h2>
+            </div>
+        </a>
+                
+    </div>
+    <button class="side-panel-toggle" type="button">
+        <span class="material-icons sp-icon-open">keyboard_double_arrow_left</span>
+        <span class="material-icons sp-icon-close">keyboard_double_arrow_right</span>
+    </button>
+    <div class="wrapper">
+        <div class="side-panel">
+            <h3 style="font-size: 2em; text-align: center;">States to Travel</h3>
+            <div class="states-list">
+                <div class="state-item">
+                    <input type="radio" id="johor" name="state">
+                    <label for="johor">Johor</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kedah" name="state">
+                    <label for="kedah">Kedah</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kelantan" name="state">
+                    <label for="kelantan">Kelantan</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kuala-lumpur" name="state">
+                    <label for="kuala-lumpur">Kuala Lumpur</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="melaka" name="state">
+                    <label for="melaka">Melaka</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="negeri-sembilan" name="state">
+                    <label for="negeri-sembilan">Negeri Sembilan</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="pahang" name="state">
+                    <label for="pahang">Pahang</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="penang" name="state">
+                    <label for="penang">Penang</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="perak" name="state">
+                    <label for="perak">Perak</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="perlis" name="state">
+                    <label for="perlis">Perlis</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="selangor" name="state">
+                    <label for="selangor">Selangor</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="sabah" name="state">
+                    <label for="sabah">Sabah</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="sarawak" name="state">
+                    <label for="sarawak">Sarawak</label>
+                </div>
+            </div>
+
+
+
+            <br>
+            <h3 style="font-size: 2em; text-align: center;">Budget to Travel</h3>
+            <div class="price-range" id="activities">
+                <h4>Activities</h4>
+                <div class="slider">
+                    <span id="activities-slider-value">MYR 100</span>
+                </div>
+                <div class="field">
+                    <div class="value left">MYR 40</div>
+                    <input type="range" min="40" max="550" value="100" step="1" id="activities-slider">
+                    <div class="value right">MYR 550</div>
+                </div>
+            </div>
+
+            <div class="price-range" id="food">
+                <h4>Food</h4>
+                <div class="slider">
+                    <span id="food-slider-value">MYR 100</span>
+                </div>
+                <div class="field">
+                    <div class="value left">MYR 40</div>
+                    <input type="range" min="40" max="500" value="100" step="1" id="food-slider">
+                    <div class="value right">MYR 500</div>
+                </div>
+            </div>
+
+            <div class="price-range" id="accommodation">
+                <h4>Accommodation</h4>
+                <div class="slider">
+                    <span id="accommodation-slider-value">MYR 100</span>
+                </div>
+                <div class="field">
+                    <div class="value left">MYR 40</div>
+                    <input type="range" min="40" max="1000" value="100" step="1" id="accommodation-slider">
+                    <div class="value right">MYR 1000</div>
+                </div>
+            </div>
+
+            <br>
+            <div class="price-range">
+                <h3 style="font-size: 2em; text-align: center;">Preferences</h3>
+            </div>
+            <div class="filter-group">
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="activities" value="adventure"> Adventure</label>
+                    <label><input type="checkbox" name="activities" value="city-walk"> City Walk</label>
+                    <label><input type="checkbox" name="activities" value="local-culture"> Local Culture</label>
+                </div>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="food" value="street-food"> Street Food</label>
+                    <label><input type="checkbox" name="food" value="fine-dining"> Fine Dining</label>
+                    <label><input type="checkbox" name="food" value="local-cuisine"> Local Cuisine</label>
+                </div>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="accommodation" value="hotel"> Hotel</label>
+                    <label><input type="checkbox" name="accommodation" value="hostel"> Hostel</label>
+                    <label><input type="checkbox" name="accommodation" value="bnb"> Airbnb</label>
+                </div>
+                <button style="padding: 8px; border-radius: 10px; margin-left: 38%; margin-top: 10px;" onclick=""><a style="text-decoration: none;" href="searchResult.html">Search</a></button>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+    <script src="filter.js"></script>
+    <script src="FilterOpenClose.js"></script>
+</body>
+
+</html>

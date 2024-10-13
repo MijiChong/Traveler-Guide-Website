@@ -1,0 +1,43 @@
+import express from 'express';
+import fetch from 'node-fetch';
+//const express = require('express');
+//const fetch = require('node-fetch');
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+const apiKey = 'sk-koiLEGPBsYyMn56Sj2WbSk6W1DQA9Ri3Yoxk1nh9EfT3BlbkFJloofZGsIt3J__yYp5sfji-ftK_5qNCeGCIsJU3L4IA'; // Replace with your actual OpenAI API key
+
+app.post('/api/chatgpt', async (req, res) => {
+    const { userInput } = req.body;
+
+    try {
+        const response = await fetch('https://api.openai.com/v1/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: [{"role": "user", "content": userInput}],
+                max_tokens: 150
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Error fetching response. Please try again later.' });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});

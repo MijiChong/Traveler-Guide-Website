@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaysia Travelling</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/language.css">
+    <link rel="stylesheet" href="css/filter.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+
+    .dish-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style-type: none;
+            text-align: left;
+            font-size: 2.5em;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+            font-size: 2.5em;
+        }
+        nav ul li a {
+            color: rgb(5, 4, 43);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <main class="main">
+            <header>
+                <a href="language.html" class="jump-button">Go to Language Page</a>
+                <h1>Travelling Recommendations</h1>
+            </header>
+                <section id="Penang" class="section-box">
+                    <a href="penang.html" class="section-link">
+                        <div class="destination-section" style="
+                            background-size: cover;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            padding: 2em;
+                            color: rgb(0, 0, 0);
+                            font-size: 1em;
+                            font-weight: bold;
+                            text-align: center;
+                            min-height: 200px;
+                            margin-bottom: 2em;
+                        ">
+                            <h1>Penang</h1>
+                        </div>
+                    </a>
+                </section>
+                <section id="Melaka" class="section-box">
+                    <a href="melakav2.html" target="_blank" class="section-link">
+                        <div class="destination-section" style="
+                            background-size: cover;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            padding: 2em;
+                            color: rgb(0, 0, 0);
+                            font-size: 1em;
+                            font-weight: bold;
+                            text-align: center;
+                            min-height: 200px;
+                            margin-bottom: 2em;
+                        ">
+                            <h1>Melaka</h1>
+                        </div>
+                    </a>
+                </section>
+
+                <section id="KualaLumpur" class="section-box">
+                        <div class="destination-section" style="
+                            background-size: cover;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            padding: 2em;
+                            color: rgb(0, 0, 0);
+                            font-size: 1em;
+                            font-weight: bold;
+                            text-align: center;
+                            min-height: 200px;
+                            margin-bottom: 2em;
+                        ">
+                            <h1>Kuala Lumpur</h1>
+                        </div>
+                    </a>
+                </section>
+        </main>
+
+        <button class="side-panel-toggle" type="button">
+            <span class="material-icons sp-icon-open">keyboard_double_arrow_left</span>
+            <span class="material-icons sp-icon-close">keyboard_double_arrow_right</span>
+        </button>
+
+        <div class="side-panel">
+            <h2>States to travel</h2>
+            <div class="states-list">
+                <div class="state-item">
+                    <input type="radio" id="johor" name="state">
+                    <label for="johor">Johor</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kedah" name="state">
+                    <label for="kedah">Kedah</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kelantan" name="state">
+                    <label for="kelantan">Kelantan</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="kuala-lumpur" name="state">
+                    <label for="kuala-lumpur">Kuala Lumpur</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="melaka" name="state">
+                    <label for="melaka">Melaka</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="negeri-sembilan" name="state">
+                    <label for="negeri-sembilan">Negeri Sembilan</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="pahang" name="state">
+                    <label for="pahang">Pahang</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="penang" name="state">
+                    <label for="penang">Penang</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="perak" name="state">
+                    <label for="perak">Perak</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="perlis" name="state">
+                    <label for="perlis">Perlis</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="selangor" name="state">
+                    <label for="selangor">Selangor</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="sabah" name="state">
+                    <label for="sabah">Sabah</label>
+                </div>
+                <div class="state-item">
+                    <input type="radio" id="sarawak" name="state">
+                    <label for="sarawak">Sarawak</label>
+                </div>
+            </div>
+    
+    
+    
+            <br><h2>Budget to travel</h2>
+            <div class="price-range" id="activities">
+            <h4>Activities</h4>
+            <div class="slider">
+                <span id="activities-slider-value">MYR 100</span>
+            </div>
+            <div class="field">
+                <div class="value left">MYR 40</div>
+                <input type="range" min="40" max="550" value="100" step="1" id="activities-slider">
+                <div class="value right">MYR 550</div>
+            </div>
+            </div>
+
+            <div class="price-range" id="food">
+            <h4>Food</h4>
+            <div class="slider">
+                <span id="food-slider-value">MYR 100</span>
+            </div>
+            <div class="field">
+                <div class="value left">MYR 40</div>
+                <input type="range" min="40" max="500" value="100" step="1" id="food-slider">
+                <div class="value right">MYR 500</div>
+            </div>
+            </div>
+
+            <div class="price-range" id="accommodation">
+            <h4>Accommodation</h4>
+            <div class="slider">
+                <span id="accommodation-slider-value">MYR 100</span>
+            </div>
+            <div class="field">
+                <div class="value left">MYR 40</div>
+                <input type="range" min="40" max="1000" value="100" step="1" id="accommodation-slider">
+                <div class="value right">MYR 1000</div>
+            </div>
+            </div>
+
+            <br><h2>Preferences</h2>
+
+            <div class="filter-group">
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="activities" value="adventure"> Adventure</label>
+                <label><input type="checkbox" name="activities" value="city-walk"> City Walk</label>
+                <label><input type="checkbox" name="activities" value="local-culture"> Local Culture</label>
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="food" value="street-food"> Street Food</label>
+                <label><input type="checkbox" name="food" value="fine-dining"> Fine Dining</label>
+                <label><input type="checkbox" name="food" value="local-cuisine"> Local Cuisine</label>
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="accommodation" value="hotel"> Hotel</label>
+                <label><input type="checkbox" name="accommodation" value="hostel"> Hostel</label>
+                <label><input type="checkbox" name="accommodation" value="bnb"> Airbnb</label>
+            </div>
+            </div>
+    </div>
+    <script src="filter.js"></script>
+    <script src="FilterOpenClose.js"></script>
+</body>
+</html>

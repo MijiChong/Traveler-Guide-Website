@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penang - Travel Destinations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #b45c46, #d7816a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .about h2 {
+            color: #4682b4;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .image-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            width: 80%;
+            padding: 20px;
+            background: rgba(180, 92, 70, 0.8);
+            border-radius: 10px;
+        }
+
+        .attractions h2 {
+            color: #4682b4;
+            text-align: center;
+            font-size: 2em;
+            margin: 40px 0;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, height 0.3s ease;
+            overflow: hidden;
+            height: 50px; /* Adjust the height as needed */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            height: auto; /* Allow the card to expand in height */
+        }
+
+        .card h3 {
+            color: #4682b4;
+            margin-top: 0;
+        }
+
+        .card p {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .card:hover p {
+            opacity: 1;
+        }
+
+        .getting-there {
+            margin-top: 40px;
+        }
+
+        .getting-there h2 {
+            color: #4682b4;
+            font-size: 2em;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4682b4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #72b6ea;
+        }
+
+        @media (max-width: 768px) {
+            .text-overlay {
+                width: 90%;
+                font-size: 0.9em;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .image-attribution {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+
+        .image-attribution a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .image-attribution a:hover {
+            color: #f0f0f0;
+        }
+
+        .card-attribution {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .card-attribution a {
+            color: #4682b4;
+            text-decoration: none;
+        }
+
+        .card-attribution a:hover {
+            text-decoration: underline;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            max-height: 150px; /* Adjust the height as needed */
+            object-fit: cover;
+        }
+        .hero {
+            background-image: url('https://image-tc.galaxy.tf/wijpeg-9j3ux7drhby0iny1evej1e38j/sunset-at-penang-bridge.jpg?width=1920');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .card h3 {
+            font-size: 1.5em; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Explore Penang</h1>
+            <p>Discover the rich culture, stunning landscapes, and vibrant heritage of Malaysia's pearl.</p>
+        </div>
+    </div>
+
+    <main>
+        <section class="about">
+            <h2>About Penang</h2>
+            <div class="image-container">
+                    <p>Penang is a Malaysian state located on the northwest coast of Peninsular Malaysia. 
+                        It's known for its rich cultural diversity, beautiful beaches, and vibrant culinary scene. 
+                        The state comprises Penang Island and Seberang Perai on the mainland, connected by the iconic Penang Bridge</p>
+            </div>
+        </section>
+        
+        <section class="attractions">
+            <h2>Attractions</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Escape Park</h3>
+                    <p>A thrilling adventure park offering zip-lining, rope courses, and water slides. Perfect for nature lovers and adrenaline junkies.</p>
+                    <p><strong>Operating Hours:</strong> Tuesday to Sunday, 10 AM - 6 PM</p>
+                    <p><strong>Ticket Prices:</strong> Vary by age group, with discounts for early bookings</p>
+                    <div class="card-attribution"><img src="https://media.tacdn.com/media/attractions-splice-spp-674x446/09/11/e3/16.jpg" alt="Escape Park"></div>
+                </div>
+                <div class="card">
+                    <h3>Penang Hill</h3>
+                    <p>Offering panoramic views of the island, Penang Hill is a popular spot for hiking and nature walks.</p>
+                    <p><strong>Ticket Prices:</strong> Vary for adults, children, and seniors</p>
+                    <br>
+                    <br>                    
+                    <br>
+                    <br>
+                    <div class="card-attribution"><img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQ-_clqC1QQcDdm-XfOR2hGAJQD8VBjreC3CQh5y6jsXQbmPyJEJhLKp2h6DZLwTvSsIwaDZu_uSDctAabkrBVrTPJ3GdGECBfadFELHA" alt="Penang Hill"></div>
+                </div>
+                <div class="card">
+                    <h3>Kek Lok Si Temple</h3>
+                    <p>One of the largest Buddhist temples in Southeast Asia, featuring a stunning pagoda and beautiful gardens.</p>
+                    <p><strong>Operating Hours:</strong> Monday - Sunday, 8.30am - 5.30pm</p>
+                    <p><strong>Entrance Fee:</strong> Free, with small charges for specific areas</p>
+                    <div class="card-attribution"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM_wojBFYJiJ7qFMeRaDgBEoNTI_q-FxZ9rQ&s" alt="Kek Lok Si Temple"></div>
+                </div>
+                <div class="card">
+                    <h3>St. Paul's Church</h3>    
+                    <p>Famous for its beautiful beaches and vibrant night market.
+                    </p>
+                    <p><strong>Operating Hours:</strong> All day</p>
+                    <p><strong>Entrance Fee:</strong> Free, with small charges for specific areas</p>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="card-attribution"><img src="https://www.kkday.com/en/blog/wp-content/uploads/Featured-Image-1170x680.jpg" alt="Batu Ferrighi"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="getting-there">
+            <h2>Getting There</h2>
+            <p>Malacca is easily accessible by various modes of transportation. The nearest airport is Malacca International Airport, which offers domestic flights. For international travelers, the closest major airport is Kuala Lumpur International Airport, about 2 hours drive away. Malacca is also well-connected by bus and car to other major cities in Malaysia.</p>
+        </section>
+        
+        <div class="back-link">
+            <a href="main.html" class="btn">Back to Home Page</a>
+        </div>
+    </main>
+</body>
+</html>

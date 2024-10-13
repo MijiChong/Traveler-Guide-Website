@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knight_Marshal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5e1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center content vertically */
+            height: 100vh;
+            background: url('https://images.stockcake.com/public/4/1/8/418043ad-7fb7-4a60-b89d-951af6b9ea94/city-night-reflection-stockcake.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            margin-top: 0; /* No top margin */
+        }
+        .header {
+            color: black;
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-family: 'Verdana', sans-serif;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
+            
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .nav .logout {
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items:right;
+            font-size: 20px;
+        }
+        .nav .logout:hover {
+            background-color: #ff4500;
+        }
+        .nav .notification {
+            position: relative;
+            cursor: pointer;
+        }
+        .nav .notification img {
+            width: 30px;
+            height: 30px;
+        }
+        .nav .notification .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 12px;
+            display: none; /* Hidden by default */
+        }
+        .nav .notification.active .badge {
+            display: block; /* Show when there are new messages */
+        }
+        .sections {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .section {
+            width: 30%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .section:hover {
+            background-color: #ffe4b5;
+            transform: scale(1.05);
+        }
+        #settingsList {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff8dc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="font-size: 50px;" class="header"><b>TOUR GUIDE</b></div>
+        <div class="nav">
+            <span class="notification" onclick="window.location.href='Conversation.html'">
+                <img  src="bell_icon.svg" alt="Notification">
+                <span class="badge">!</span>
+            </span>
+            <button class="logout" onclick="confirmLogout()">Logout</button>
+        </div>
+        <div class="sections">
+            <div class="section" onclick="window.location.href='TourGuideProfile.html'">
+                <h3>Profile</h3>
+            </div>
+            <div class="section" onclick="window.location.href='TourGuideBid(1).html'">
+                <h3>Events In Hand</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSettings() {
+            document.getElementById('settingsList').style.display = 'block';
+        }
+
+        function confirmLogout() {
+            const confirmation = confirm("Are you sure you want to logout?");
+            if (confirmation) {
+                window.location.href = 'userLogin.html'; // Redirect to homepage or login page
+            }
+        }
+
+        // Function to simulate new messages and show the badge
+        function showNotificationBadge() {
+            document.querySelector('.notification').classList.add('active');
+        }
+
+        // Example of how to call the function to show the badge
+        // This should be called whenever there are new messages
+        // For demonstration purposes, let's call it after 3 seconds
+        setTimeout(showNotificationBadge, 3000);
+    </script>
+</body>
+</html>

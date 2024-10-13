@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Search Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .result {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            position: relative; /* Make the result container a positioning context */
+        }
+
+        .result img {
+            border-radius: 8px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .result-content {
+            flex-grow: 1;
+        }
+
+        .result-content h2 {
+            margin-top: 0;
+            font-size: 1.8em; /* Increase the size of result headings */
+        }
+
+        .result-content p strong {
+            font-size: 1.4em; /* Increase the size of the primary title text */
+        }
+
+        .result-content ul li {
+            font-size: 1.2em; /* Increase the size of the list items */
+        }
+
+        .cart {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .message {
+            display: none;
+            color: #28a745;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .checkbox-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            transform: scale(1.8); /* Scale up the checkbox */
+            margin: 0;
+            cursor: pointer;
+        }     
+    </style>
+</head>
+<body>
+    <h1>Search Result</h1>
+    <p>There are total 3 results in Penang:</p>
+    <br>
+
+    <div class="result">
+        <img src="https://www.shoptrack.my/wp-content/uploads/2023/02/escape-penang.jpg" alt="Escape Park">
+        <div class="result-content">
+            <h2>Result 1:</h2>
+            <div class="checkbox-container">
+                <input type="checkbox" id="travel1" name="travel" value="Escape Park">
+            </div>
+            <p><strong>Escape Park</strong></p>
+            <ul>
+                <li>Theme: Adventure</li>
+                <li>Expected expenses: RM180/person (excluded tour guide fee)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="result">
+        <img src="https://c2.staticflickr.com/6/5217/5458430942_85360274b2_b.jpg" alt="Batu Ferringhi">
+        <div class="result-content">
+            <h2>Result 2:</h2>
+            <div class="checkbox-container">
+                <input type="checkbox" id="travel2" name="travel" value="Batu Ferringhi">
+            </div>
+            <p><strong>Batu Ferringhi</strong></p>
+            <ul>
+                <li>Theme: Natural</li>
+                <li>Expected expenses: RM10-50/person (excluded tour guide fee)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="result">
+        <img src="https://th.bing.com/th/id/R.641c5d8d80e4436d972672cd3bc48c01?rik=1537ldLvq0k97w&riu=http%3a%2f%2fwww.tishineh.com%2ftour%2fPictures%2fItem%2f4691%2f56041.jpg&ehk=V1sSUMVhgLhcWq6YF8Zwgk%2bokTpGvA5Oimo7CS5OyA8%3d&risl=&pid=ImgRaw&r=0" alt="Penang Hill">
+        <div class="result-content">
+            <h2>Result 3:</h2>
+            <div class="checkbox-container">
+                <input type="checkbox" id="travel3" name="travel" value="Penang Hill">
+            </div>
+            <p><strong>Penang Hill</strong></p>
+            <ul>
+                <li>Theme: Natural</li>
+                <li>Expected expenses: RM8-80/person (excluded tour guide fee)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h2>Cart</h2>
+        <div id="cartItems"></div>
+        <button id="addCartButton">Add to Cart</button>
+        <button id="addCartButton"><a style="text-decoration: none; color: white" href="cart.html">Review</a></button>
+        <p id="successMessage" class="message">Successfully added to cart</p>
+    </div>
+
+    <script>
+        const cartItemsDiv = document.getElementById('cartItems');
+        const addCartButton = document.getElementById('addCartButton');
+        const successMessage = document.getElementById('successMessage');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateCart);
+        });
+
+        addCartButton.addEventListener('click', () => {
+            updateCart();
+            successMessage.style.display = 'block';
+
+            // Uncheck all checkboxes
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 2000);
+        });
+
+        function updateCart() {
+            cartItemsDiv.innerHTML = ''; // Clear previous items
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const item = document.createElement('div');
+                    item.className = 'cart-item';
+                    item.textContent = checkbox.value;
+                    cartItemsDiv.appendChild(item);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

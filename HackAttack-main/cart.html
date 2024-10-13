@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="filter.js"></script> <!-- Include the filter.js file -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            position: relative;
+            display:contents;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        body::before {
+            content: "";
+            background-image: url('https://cdn.wallpapersafari.com/78/25/JU9bGD.jpg');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Ensure it covers the full height */
+            opacity: 0.5; /* 50% transparency */
+            z-index: -1; /* Ensure the background stays behind the content */
+        }
+
+        .container {
+            width: 80%;
+            max-width: 8000px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: rgba(0, 191, 255, 0.7);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            font-size: 1.8em;
+            font-family: 'Verdana', sans-serif;
+            letter-spacing: 1px;
+        }
+        .travel-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 20px;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .travel-item:last-child {
+            border-bottom: none;
+        }
+        .travel-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .travel-item .description {
+            flex: 1;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .travel-item .amount {
+            width: 120px;
+            text-align: right;
+            font-size: 1.1em;
+            color: #153e4c;
+        }
+        .travel-item .remove {
+            margin-left: 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .travel-item .remove:hover {
+            background-color: #ff4500;
+        }
+        .total, .buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+            font-size: 1.2em;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+      
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Travel Expenses Summary</div>
+        <div id="travelList"></div>
+        <div class="total">
+            <div>Total: RM <span id="totalAmount">0.00</span></div>
+            <button onclick="confirm()" id="addCartButton"><a style="text-decoration: none; color: black" href="main.html">Confirm</a></button>
+        </div>
+       
+
+    </div>
+
+    <script>
+        // Sample data: Normally, this data would come from the server or previous page.
+        const travelData = [
+            {img: 'https://www.shoptrack.my/wp-content/uploads/2023/02/escape-penang.jpg', description: 'Escape Park', amount: 180.00},
+            {img: 'https://c2.staticflickr.com/6/5217/5458430942_85360274b2_b.jpg', description: 'Batu Ferringhi', amount: 10.00},
+            {img: 'https://th.bing.com/th/id/R.641c5d8d80e4436d972672cd3bc48c01?rik=1537ldLvq0k97w&riu=http%3a%2f%2fwww.tishineh.com%2ftour%2fPictures%2fItem%2f4691%2f56041.jpg&ehk=V1sSUMVhgLhcWq6YF8Zwgk%2bokTpGvA5Oimo7CS5OyA8%3d&risl=&pid=ImgRaw&r=0', description: 'Penang Hill', amount: 8.00}
+        ];
+
+        const travelList = document.getElementById('travelList');
+        const totalAmount = document.getElementById('totalAmount');
+        
+
+        let total = 0;
+
+        travelData.forEach((item, index) => {
+            const travelItem = document.createElement('div');
+            travelItem.classList.add('travel-item');
+            travelItem.innerHTML = `
+                <img src="${item.img}" alt="${item.description}">
+                <div class="description">${item.description}</div>
+                <div class="amount">RM ${item.amount.toFixed(2)}</div>
+                <button class="remove" data-index="${index}">Remove</button>
+            `;
+            travelList.appendChild(travelItem);
+
+            total += item.amount;
+        });
+
+        totalAmount.textContent = total.toFixed(2);
+
+        travelList.addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove')) {
+                const index = event.target.getAttribute('data-index');
+                travelData.splice(index, 1);
+                total -= parseFloat(event.target.previousElementSibling.textContent.replace('RM ', ''));
+                totalAmount.textContent = total.toFixed(2);
+                travelList.removeChild(event.target.parentElement);
+            }
+        });
+
+        cancelBtn.addEventListener('click', function() {
+            // Navigate back to the previous page
+            window.history.back();
+        });
+        function confirm(){
+            alert("Succesfully submitted to tour guide");
+        }
+       
+    </script>
+</body>
+</html>

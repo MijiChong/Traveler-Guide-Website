@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Chat</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('chatbox_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: #808080;
+            z-index: 1000;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            position: relative;
+        }
+
+        .icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 12px;
+        }
+
+        .chat-container {
+            width: 500px; /* Increase the width */
+            height: 390px; /* Increase the height */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Ensure proper positioning */
+        }
+
+        .chat-header {
+            background: #48D1CC;
+            color: white;
+            padding: 20px; /* Increase padding */
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 20px; /* Increase font size */
+        }
+
+        .chat-content {
+            flex: 1;
+            overflow: hidden;
+            font-size: 14px; /* Increase font size */
+        }
+
+        .chatbox {
+            height: calc(95% - 80px); /* Adjust for header and input height */
+            overflow-y: auto;
+            padding: 15px; /* Increase padding */
+            background-color: #e6e9f0;
+        }
+
+        .message {
+            margin-bottom: 15px; /* Increase margin */
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.3s ease-in-out;
+            font-size: 18px; /* Increase font size */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .guide {
+            background-color: #48D1CC;
+            color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user {
+            background-color: #a777e3;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .input-container {
+            display: flex;
+            padding: 5px; /* Increase padding */
+            background-color: white;
+            border-top: 1px solid #ddd; /* Add border for separation */
+            align-items: center; /* Center items vertically */
+        }
+
+        #userInput {
+            flex-grow: 1;
+            padding: 10px 15px; /* Increase padding */
+            border: none;
+            border-radius: 20px;
+            background-color: #f0f2f5;
+            font-size: 18px; /* Increase font size */
+            margin-right: 10px; /* Space between input and button */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        #userInput:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #48D1CC;
+        }
+
+        #sendBtn {
+            background-color: #48D1CC;
+            color: white;
+            border: none;
+            padding: 10px 15px; /* Increase padding */
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        #sendBtn:hover {
+            background-color: #3EB5B0;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px; /* Increase scrollbar width */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #808080;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 209, 204, 0.3);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(72, 209, 204, 0.4);
+        }
+
+        .button-text {
+            padding: 12px 20px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .button-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover .button-text {
+            padding-right: 30px;
+        }
+
+        .back-button:hover .button-icon {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .back-button:active::after {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(72, 209, 204, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(72, 209, 204, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(72, 209, 204, 0);
+            }
+        }
+
+        .back-button:hover {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Minimized state styling */
+        .chat-container.minimized .chat-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="icons">
+            <span class="icon bell" onclick="window.location.href='conversation.html'">
+                <i class="fas fa-bell"></i>
+                <span class="badge">1</span>
+            </span>
+            <span class="icon user"><i class="fas fa-user"></i></span>
+        </div>
+    </div>
+    <div id="chatContainer" class="chat-container">
+        <div class="chat-header" id="toggleChatHeader">
+            Alex Tan
+            <div class="header-buttons">
+                <span class="close-btn" id="closeChatBtn"><i class="fas fa-times"></i></span>
+            </div>
+        </div>
+        <div id="chatContent" class="chat-content">
+            <div id="chatbox" class="chatbox">
+                <div class="message guide">Good morning.</div>
+                <div class="message user">Morning!</div>
+                <div class="message user">How can I assist you today?</div>
+                <div class="message guide">I'm looking for travel recommendations.</div>
+                <div class="message user">Sure! Are you interested in local or international destinations?</div>
+                <div class="message guide">I'm more prefer travel in local.</div>
+                <div class="message user">Oh, I see. May I know what state that you prefer to travel?</div>
+                <div class="message guide">I more prefer to travel in Penang. Since I heard that there are many delicious foods in Penang.</div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="userInput" placeholder="Text your message here...">
+                <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <button id="backButton" class="back-button" onclick="goBackToHomepage()">
+        <span class="button-text">Back</span>
+        <div class="button-icon">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+    </button>
+
+    <script>
+        function goBackToHomepage() {
+            window.location.href = 'Ghomepage.html';
+        }
+
+        document.getElementById('sendBtn').addEventListener('click', function() {
+            const userInput = document.getElementById('userInput').value;
+            if (userInput.trim() !== "") {
+                const chatbox = document.getElementById('chatbox');
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user';
+                userMessage.textContent = userInput;
+                chatbox.appendChild(userMessage);
+                document.getElementById('userInput').value = '';
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }
+        });
+
+        document.getElementById('closeChatBtn').addEventListener('click', function() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.remove();
+        });
+
+       
+    </script>
+</body>
+</html>
